@@ -33,17 +33,19 @@ client.on(Events.InteractionCreate, async interaction => {
   // /painel
   if (interaction.isChatInputCommand()) {
     if (interaction.commandName === "painel") {
-      const botao = new ButtonBuilder()
-        .setCustomId("mandar_clipe")
-        .setLabel("🎬 Mandar clipe")
-        .setStyle(ButtonStyle.Primary);
+  await interaction.deferReply();
 
-      await interaction.reply({
-        content: "Envie seu Highlight clicando abaixo:",
-        components: [new ActionRowBuilder().addComponents(botao)]
-      });
-    }
-  }
+  const botao = new ButtonBuilder()
+    .setCustomId("mandar_clipe")
+    .setLabel("🎬 Mandar clipe")
+    .setStyle(ButtonStyle.Primary);
+
+  await interaction.editReply({
+    content: "Envie seu Highlight clicando abaixo:",
+    components: [new ActionRowBuilder().addComponents(botao)]
+  });
+}
+
 
   // botão mandar clipe
   if (interaction.isButton() && interaction.customId === "mandar_clipe") {
