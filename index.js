@@ -181,3 +181,8 @@ client.once("ready", () => {
 });
 
 client.login(config.token);
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log(`Servidor web ativo na porta ${PORT}`);
+});
