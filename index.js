@@ -140,3 +140,33 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log("Servidor ativo na porta " + PORT);
 });
+const { Client, GatewayIntentBits } = require("discord.js");
+const express = require("express");
+const config = require("./config.json");
+
+const client = new Client({
+  intents: [
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildMessages,
+    GatewayIntentBits.MessageContent
+  ]
+});
+
+/* ===== SERVIDOR WEB (OBRIGATÓRIO NO RENDER) ===== */
+const app = express();
+
+app.get("/", (req, res) => {
+  res.send("Bot online 🚀");
+});
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log("Servidor web ativo na porta " + PORT);
+});
+
+/* ===== BOT ===== */
+client.once("ready", () => {
+  console.log(`Bot logado como ${client.user.tag}`);
+});
+
+client.login(config.token);
