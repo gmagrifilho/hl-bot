@@ -128,13 +128,22 @@ client.on(Events.InteractionCreate, async interaction => {
   }
 });
 
+/* ===== LOGIN DO BOT ===== */
 client.login(config.token);
+
+/* ===== SERVIDOR WEB (OBRIGATÓRIO PRO RENDER) ===== */
 const express = require("express");
 const app = express();
 
 app.get("/", (req, res) => {
-  res.send("Bot online");
+  res.send("Bot online 🚀");
 });
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log("Servidor web ativo na porta " + PORT);
+});
+
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
