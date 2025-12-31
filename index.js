@@ -129,3 +129,14 @@ client.on(Events.InteractionCreate, async interaction => {
 });
 
 client.login(config.token);
+const express = require("express");
+const app = express();
+
+app.get("/", (req, res) => {
+  res.send("Bot online");
+});
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log("Servidor ativo na porta " + PORT);
+});
